@@ -2,16 +2,17 @@ from kubernetes import client, config
 from kubernetes.client.rest import ApiException
 import time
 import sys
+import os
 
 configuration = client.Configuration()
 
 ###### VARIABLES #######
-token = "<your token>"
-configuration.host = "<your kube api endpoint>"
-#configuration.ssl_ca_cert = "ca.crt"
-#configuration.cert_file = "client.crt"
-#configuration.key_file = "client.key"
-configuration.verify_ssl = False  # Set to True with proper certificate if required
+token = os.getenv('PATROL_TOKEN')
+configuration.host = os.getenv('PATROL_HOST')
+configuration.ssl_ca_cert = "ca.crt"
+configuration.cert_file = "client.crt"
+configuration.key_file = "client.key"
+#configuration.verify_ssl = False  # Set to True with proper certificate if required
 namespace_pods = "kube-system"
 
 ###### END VARIABLES ######
